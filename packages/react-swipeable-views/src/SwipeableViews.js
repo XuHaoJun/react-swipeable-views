@@ -332,6 +332,10 @@ class SwipeableViews extends Component {
      */
     onTouchStart: PropTypes.func,
     /**
+     * @ignore
+     */
+    onFirstRenderComplete: PropTypes.func,
+    /**
      * The callback that fires when the animation comes to a rest.
      * This is useful to defer CPU intensive task.
      */
@@ -442,6 +446,10 @@ class SwipeableViews extends Component {
     /* eslint-disable react/no-did-mount-set-state */
     this.setState({
       isFirstRender: false,
+    }, () => {
+      if (this.props.onFirstRenderComplete) {
+        this.props.onFirstRenderComplete();
+      }
     });
     /* eslint-enable react/no-did-mount-set-state */
 
@@ -828,6 +836,7 @@ class SwipeableViews extends Component {
       springConfig,
       style,
       threshold, // eslint-disable-line no-unused-vars
+      onFirstRenderComplete,
       ...other
     } = this.props;
 
@@ -931,6 +940,17 @@ We are expecting a valid React Element`);
                   this.updateHeight();
                 };
                 slideStyle.overflowY = 'hidden';
+              }
+              if (ref) {
+                let oldRef = ref;
+                ref = (node) => {
+                  oldRef(node);
+                  this._activeSlide = node;
+                }
+              } else {
+                ref = (node) => {
+                  this._activeSlide = node;
+                }
               }
             }
 
