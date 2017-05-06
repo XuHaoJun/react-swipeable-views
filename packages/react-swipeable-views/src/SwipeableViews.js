@@ -919,7 +919,7 @@ So animateHeight is most likely having no effect at all.`,
           className="react-swipeable-view-container"
         >
           {Children.map(children, (child, indexChild) => {
-            if (isFirstRender && indexChild > 0) {
+            if (isFirstRender && indexChild !== index) {
               return null;
             }
 
