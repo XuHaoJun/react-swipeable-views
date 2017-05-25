@@ -1,10 +1,10 @@
 {
-  "name": "react-swipeable-views",
-  "version": "0.12.3",
+  "name": "@xuhaojun/react-swipeable-views",
+  "version": "0.12.8",
   "description": "A React component for swipeable views",
   "main": "lib/index.js",
   "scripts": {
-    "prepublish": "pkgfiles"
+
   },
   "repository": {
     "type": "git",
