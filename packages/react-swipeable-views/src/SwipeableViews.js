@@ -889,7 +889,9 @@ So animateHeight is most likely having no effect at all.`,
       }
     }
 
-    const transform = axisProperties.transform[axis](indexCurrent * 100);
+    const transform = isFirstRender ?
+    axisProperties.transform[axis](0) :
+    axisProperties.transform[axis](indexCurrent * 100);
     const containerStyle = {
       WebkitTransform: transform,
       transform,
@@ -942,7 +944,7 @@ We are expecting a valid React Element`);
                 slideStyle.overflowY = 'hidden';
               }
               if (ref) {
-                let oldRef = ref;
+                const oldRef = ref;
                 ref = (node) => {
                   oldRef(node);
                   this._activeSlide = node;
